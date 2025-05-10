@@ -92,14 +92,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TO_JIS:
             if (record->event.pressed) {
                 default_layer_set(1UL << _JIS);
-                tap_code(KC_LANG1);  // 日本語入力に切替
+                tap_code(KC_LNG1);  // 日本語入力に切替
             }
             return false;
 
         case TO_DVORAK:
             if (record->event.pressed) {
                 default_layer_set(1UL << _DVORAK);
-                tap_code(KC_LANG2);  // 英語入力に切替
+                tap_code(KC_LNG2);  // 英語入力に切替
             }
             return false;
     }
