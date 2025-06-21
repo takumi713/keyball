@@ -27,7 +27,8 @@ enum layers {
 
 enum custom_keycodes {
   TO_JIS = SAFE_RANGE,
-  TO_DVORAK
+  TO_DVORAK,
+  KC_KAKKO  // 「」を入力するためのキー
 };
 
 // clang-format off
@@ -51,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______  ,S(KC_QUOT), KC_7     , KC_8    , KC_9     , S(KC_8)  ,                                         S(KC_9)  , S(KC_1)  , S(KC_6)  , KC_LBRC  , S(KC_4)  , _______  ,
     _______  ,S(KC_SCLN), KC_4     , KC_5    , KC_6     , KC_RBRC  ,                                         KC_NUHS  , KC_MINS  , S(KC_EQL), S(KC_3)  , KC_QUOT  , S(KC_2)  ,
     _______  ,S(KC_MINS), KC_1     , KC_2    , KC_3     ,S(KC_RBRC),                                        S(KC_NUHS),S(KC_INT1), KC_EQL   ,S(KC_LBRC),S(KC_SLSH),S(KC_INT3),
-                  KC_0     , KC_DOT  , _______  ,         _______  , _______  ,                   KC_DEL   , _______  , _______       , _______  , _______
+                  KC_0     , KC_DOT  , KC_KAKKO,         _______  , _______  ,                   KC_DEL   , _______  , _______       , _______  , _______
   ),
 
   [3] = LAYOUT_universal(
@@ -100,6 +101,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 default_layer_set(1UL << _DVORAK);
                 tap_code(KC_LNG2);  // 英語入力に切替
+            }
+            return false;
+
+        case KC_KAKKO:
+            if (record->event.pressed) {
+                // 「」を入力
+                SEND_STRING("「」");
+                // カーソルを「」の間に移動
+                tap_code(KC_LEFT);
             }
             return false;
     }
