@@ -3,7 +3,7 @@
 #include "quantum.h"
 #include "keymap_dvorak.h"
 
-#define MOUSEKEY_SCROLL_DIVISOR 300
+#define MOUSEKEY_SCROLL_DIVISOR 350
 
 enum layers {
   _JIS,
