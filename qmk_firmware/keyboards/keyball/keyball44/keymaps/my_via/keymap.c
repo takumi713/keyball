@@ -3,7 +3,7 @@
 #include "quantum.h"
 #include "keymap_dvorak.h"
 
-#define MOUSEKEY_SCROLL_DIVISOR 160
+#define MOUSEKEY_SCROLL_DIVISOR 200
 
 enum layers {
   _JIS,
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [6] = LAYOUT_universal(
   _______  , S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),               S(KC_6)  , S(KC_7)  , S(KC_8)  , S(KC_9)  , S(KC_0)  , _______  ,
     _______  , KC_1,    KC_2,   KC_3,     KC_4,     KC_5,                 KC_6    , KC_7      , KC_8     , KC_9     , KC_0      , DV_BSLS,
-    _______  , _______,  _______   , _______   ,_______    ,_______,      _______,_______,_______ ,_______,_______,_______,
+    _______  , DV_COLN,  _______   , _______   ,_______    ,_______,      ______,DV_LBRC , DV_RBRC, DV_LBRC, DV_RBRC, DV_GRV,
                   KC_0     , KC_DOT  , _______, _______  , _______  ,          KC_DEL   , _______  , _______       , _______  , _______
 ),
 // dvorak > 3
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     // Auto enable scroll mode when the highest layer is 3
-    keyball_set_scroll_mode(get_highest_layer(state) == 3 || 7);
+    keyball_set_scroll_mode(get_highest_layer(state) == 3 || get_highest_layer(state) == 7);
     return state;
 }
 
