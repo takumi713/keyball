@@ -114,7 +114,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case NEXT_ITERM:
             if (record->event.pressed) {
                 register_code(KC_LGUI);
-                tap_code(DV_LCBR);
+                tap_code16(DV_LCBR);
                 unregister_code(KC_LGUI);
             }
             return false;
