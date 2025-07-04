@@ -13,6 +13,7 @@ enum layers {
 enum custom_keycodes {
   TO_JIS = SAFE_RANGE,
   TO_DVORAK,
+  NEXT_ITERM,
 };
 
 // clang-format off
@@ -58,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   SSNP_FRE ,  KC_F1   , KC_F2    , KC_F3   , KC_F4    , KC_F5    ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
     SSNP_VRT ,  KC_LEFT , KC_DOWN  , KC_UP   , KC_RGHT  , _______   ,       KC_PGUP  , KC_LEFT  , KC_DOWN    , KC_UP  , KC_RGHT  , KC_F12   ,
     SSNP_HOR ,  _______ , _______  , _______ , _______  , _______  ,       KC_PGDN  , _______  , _______  , _______  , _______  , _______  ,
-              _______  , _______ , _______  ,  _______  , _______  ,         _______  , _______  , _______       , _______  , _______
+              _______  , _______ , _______  ,  _______  , _______  ,         _______  , NEXT_ITERM  , _______       , _______  , _______
 ),
 // dvorak > 2
   [6] = LAYOUT_universal(
@@ -107,6 +108,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 default_layer_set(1UL << _DVORAK);
                 tap_code(KC_LNG2);
+            }
+            return false;
+
+        case NEXT_ITERM:
+            if (record->event.pressed) {
+                register_code(KC_LGUI);
+                tap_code(DV_LCBR);
+                unregister_code(KC_LGUI);
             }
             return false;
     }
