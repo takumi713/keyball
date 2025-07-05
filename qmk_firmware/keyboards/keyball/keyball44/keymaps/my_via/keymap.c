@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   SSNP_FRE ,  KC_F1   , KC_F2    , KC_F3   , KC_F4    , KC_F5   ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
     SSNP_VRT ,  KC_LEFT , KC_DOWN  , KC_UP   , KC_RGHT  , NEXT_ITERM   ,       KC_PGUP  , KC_LEFT  , KC_DOWN    , KC_UP  , KC_RGHT  , KC_F12   ,
     SSNP_HOR ,  _______ , _______  , _______ , _______  , _______  ,       KC_PGDN  , _______  , _______  , _______  , _______  , _______  ,
-              _______  , _______ , _______  ,  _______  , _______  ,         GO_PREVIOUS_WINDOW  , GO_NEXT_WINDOWs  , _______       , _______  , _______
+              _______  , _______ , _______  ,  _______  , _______  ,         GO_PREVIOUS_WINDOW  , GO_NEXT_WINDOW  , _______       , _______  , _______
 ),
 // dvorak > 2
   [6] = LAYOUT_universal(
