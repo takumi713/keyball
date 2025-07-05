@@ -14,6 +14,8 @@ enum custom_keycodes {
   TO_JIS = SAFE_RANGE,
   TO_DVORAK,
   NEXT_ITERM,
+  GO_NEXT_WINDOW,
+  GO_PREVIOUS_WINDOW,
 };
 
 // clang-format off
@@ -28,8 +30,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [1] = LAYOUT_universal(
     SSNP_FRE ,  KC_F1   , KC_F2    , KC_F3   , KC_F4    , KC_F5    ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
     SSNP_VRT ,  KC_LEFT , KC_DOWN  , KC_UP   , KC_RGHT  , _______   ,       KC_PGUP  , KC_LEFT  , KC_DOWN    , KC_UP  , KC_RGHT  , KC_F12   ,
-    SSNP_HOR ,  _______ , _______  , _______ , _______  , _______  ,       KC_PGDN  , _______  , _______  , _______  , _______  , _______  ,
-              _______  , _______ , _______  ,  _______  , _______  ,         _______  , _______  , _______       , _______  , _______
+    SSNP_HOR ,  S(KC_SEMICOLON) , _______  , _______ , _______  , _______  ,       KC_PGDN  , _______  , _______  , _______  , _______  , _______  ,
+              _______  , _______ , _______  ,  _______  , _______  ,         GO_PREVIOUS_WINDOW  , GO_NEXT_WINDOW  , _______       , _______  , _______
   ),
 
   [2] = LAYOUT_universal(
@@ -56,10 +58,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 // dvorak > 1
   [5] = LAYOUT_universal(
-  SSNP_FRE ,  KC_F1   , KC_F2    , KC_F3   , KC_F4    , KC_F5    ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
-    SSNP_VRT ,  KC_LEFT , KC_DOWN  , KC_UP   , KC_RGHT  , _______   ,       KC_PGUP  , KC_LEFT  , KC_DOWN    , KC_UP  , KC_RGHT  , KC_F12   ,
+  SSNP_FRE ,  KC_F1   , KC_F2    , KC_F3   , KC_F4    , KC_F5   ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
+    SSNP_VRT ,  KC_LEFT , KC_DOWN  , KC_UP   , KC_RGHT  , NEXT_ITERM   ,       KC_PGUP  , KC_LEFT  , KC_DOWN    , KC_UP  , KC_RGHT  , KC_F12   ,
     SSNP_HOR ,  _______ , _______  , _______ , _______  , _______  ,       KC_PGDN  , _______  , _______  , _______  , _______  , _______  ,
-              _______  , _______ , _______  ,  _______  , _______  ,         _______  , NEXT_ITERM  , _______       , _______  , _______
+              _______  , _______ , _______  ,  _______  , _______  ,         GO_PREVIOUS_WINDOW  , GO_NEXT_WINDOWs  , _______       , _______  , _______
 ),
 // dvorak > 2
   [6] = LAYOUT_universal(
@@ -116,6 +118,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 register_code(KC_LGUI);
                 tap_code16(DV_LCBR);
                 unregister_code(KC_LGUI);
+            }
+            return false;
+        
+        case GO_NEXT_WINDOW:
+            if (record->event.pressed){
+                register_code(KC_LCTL);
+                tap_code(KC_RGHT); 
+                unregister_code(KC_LCTL);
+            }
+            return false;
+
+        case GO_PREVIOUS_WINDOW:
+            if (record->event.pressed){
+              register_code(KC_LCTL);
+              tap_code(KC_LEFT);
+              unregister_code(KC_LCTL);
             }
             return false;
     }
