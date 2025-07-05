@@ -2,8 +2,7 @@
 
 #include "quantum.h"
 #include "keymap_dvorak.h"
-
-#define MOUSEKEY_SCROLL_DIVISOR 350
+#include "keymap_japanese.h"
 
 enum layers {
   _JIS,
@@ -30,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [1] = LAYOUT_universal(
     SSNP_FRE ,  KC_F1   , KC_F2    , KC_F3   , KC_F4    , KC_F5    ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
     SSNP_VRT ,  KC_LEFT , KC_DOWN  , KC_UP   , KC_RGHT  , _______   ,       KC_PGUP  , KC_LEFT  , KC_DOWN    , KC_UP  , KC_RGHT  , KC_F12   ,
-    SSNP_HOR ,  S(KC_SEMICOLON) , _______  , _______ , _______  , _______  ,       KC_PGDN  , _______  , _______  , _______  , _______  , _______  ,
+    SSNP_HOR ,  JP_COLN , _______  , _______ , _______  , _______  ,       KC_PGDN  , _______  , _______  , _______  , _______  , _______  ,
               _______  , _______ , _______  ,  _______  , _______  ,         GO_PREVIOUS_WINDOW  , GO_NEXT_WINDOW  , _______       , _______  , _______
   ),
 
@@ -116,7 +115,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case NEXT_ITERM:
             if (record->event.pressed) {
                 register_code(KC_LGUI);
-                tap_code16(DV_LCBR);
+                tap_code16(DV_LBRC);
                 unregister_code(KC_LGUI);
             }
             return false;

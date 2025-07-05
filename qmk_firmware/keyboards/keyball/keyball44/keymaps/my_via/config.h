@@ -39,3 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define AUTO_MOUSE_DEFAULT_LAYER 1
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 8
+#define MOUSEKEY_WHEEL_MAX_SPEED 4
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 30
+#define MOUSEKEY_WHEEL_INTELVAL 120
+#define MOUSEKEY_SCROLL_DIVISOR 2
