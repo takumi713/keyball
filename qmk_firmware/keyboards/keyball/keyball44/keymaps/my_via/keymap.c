@@ -140,7 +140,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case ZOOM_IN:
             if (record->event.pressed){
               register_code(KC_RGUI);
-              tap_code(DV_PLUS);
+              register_code(KC_LSFT);
+              tap_code(DV_EQL);
+              unregister_code(KC_LSFT);
               unregister_code(KC_RGUI);
             }
             return false;
