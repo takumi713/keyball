@@ -15,6 +15,7 @@ enum custom_keycodes {
   NEXT_ITERM,
   GO_NEXT_WINDOW,
   GO_PREVIOUS_WINDOW,
+  ZOOM_IN,
 };
 
 // clang-format off
@@ -64,12 +65,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 // dvorak > 2
   [6] = LAYOUT_universal(
-  _______  , S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),               S(KC_6)  , S(KC_7)  , S(KC_8)  , S(KC_9)  , S(KC_0)  , _______  ,
+  _______  , S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),               S(KC_6)  , S(KC_7)  , S(KC_8)  , S(KC_9)  , S(KC_0)  , DV_PIPE  ,
     _______  , KC_1,    KC_2,   KC_3,     KC_4,     KC_5,                 KC_6    , KC_7      , KC_8     , KC_9     , KC_0      , DV_BSLS,
     _______  , DV_COLN,  _______   , _______   ,_______    ,_______,      _______, DV_LBRC , DV_RBRC, DV_LCBR, DV_RCBR, DV_GRV,
-                  KC_0     , KC_DOT  , DV_PLUS , DV_EQL  , _______  ,          KC_DEL   , _______  , _______       , _______  , _______
+                  KC_0     , KC_DOT  , DV_PLUS , DV_EQL  , _______  ,          _______  , _______  , _______       , _______  , _______
 ),
-// dvorak > 3
+// dvorak > 
   [7] = LAYOUT_universal(
   RGB_TOG  , AML_TO   , AML_I50  , AML_D50  , _______  , KBC_SAVE  ,       _______  ,  KC_LAUNCHPAD  , KC_MISSION_CONTROL  , _______ ,  _______ ,  _______  ,
     RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  , _______  , SCRL_DVI ,      _______  , KC_BTN1  , KC_BTN3  , KC_BTN2 , _______  , _______  ,
@@ -133,6 +134,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               register_code(KC_LCTL);
               tap_code(KC_LEFT);
               unregister_code(KC_LCTL);
+            }
+            return false;
+        
+        case ZOOM_IN:
+            if (record->event.pressed){
+              register_code(KC_RGUI);
+              tap_code(DV_PLUS);
+              unregister_code(KC_RGUI);
             }
             return false;
     }
