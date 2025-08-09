@@ -23,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_universal(
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,      KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS   ,
     KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,      KC_H     , KC_J     , KC_K     , KC_L     , LT(3,KC_SCLN)  , KC_ENT  ,
-    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,      KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , LT(KC_LSFT,KC_BSLS)  ,
+    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,      KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , MT(KC_LSFT,KC_BSLS)  ,
               KC_LALT,TO_DVORAK,   KC_LGUI,LT(1,KC_SPC),LT(3,KC_ENT),        LT(2,KC_BSPC),KC_RGUI, _______,  _______  , KC_ESC
   ),
 
@@ -53,14 +53,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [4] = LAYOUT_universal(
   KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,       KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , DV_SLSH   ,
   KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,       KC_H     , KC_J     , KC_K     , KC_L     , LT(7,DV_S)  , DV_MINS  ,
-  KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,       KC_N     , KC_M     , DV_W  , DV_V   , DV_Z , LT(KC_LSFT,DV_TILD)  ,
+  KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,       KC_N     , KC_M     , DV_W  , DV_V   , DV_Z , MT(KC_LSFT,DV_TILD)  ,
             KC_LALT, TO_JIS, KC_LGUI   , LT(5,KC_SPC), LT(7,KC_ENT),     LT(6,KC_BSPC), KC_RGUI, _______, _______ , KC_ESC
 ),
 // dvorak > 1
   [5] = LAYOUT_universal(
   SSNP_FRE ,  KC_F1   , KC_F2    , KC_F3   , KC_F4    , KC_F5   ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
     SSNP_VRT ,  KC_LEFT , KC_DOWN  , KC_UP   , KC_RGHT  , NEXT_ITERM   ,       KC_PGUP  , KC_LEFT  , KC_DOWN    , KC_UP  , KC_RGHT  , KC_F12   ,
-    SSNP_HOR ,  _______ , _______  , _______ , _______  , _______  ,       KC_PGDN  , _______  , _______  , _______  , _______  , _______  ,
+    SSNP_HOR ,  _______ , _______  , _______ , _______  , _______  ,       KC_PGDN  , ZOOM_IN  , _______  , _______  , _______  , _______  ,
               _______  , _______ , _______  ,  _______  , _______  ,         GO_PREVIOUS_WINDOW  , GO_NEXT_WINDOW  , _______       , _______  , _______
 ),
 // dvorak > 2
